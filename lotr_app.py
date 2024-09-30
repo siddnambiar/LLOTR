@@ -17,13 +17,11 @@ st.sidebar.header("Choose Your Filters")
 selected_race = st.sidebar.multiselect("Filter by Race", df["race"].dropna().unique()) if 'race' in df.columns else []
 selected_gender = st.sidebar.multiselect("Filter by Gender", df["gender"].dropna().unique()) if 'gender' in df.columns else []
 selected_realm = st.sidebar.multiselect("Filter by Realm", df["realm"].dropna().unique()) if 'realm' in df.columns else []
-selected_spouse = st.sidebar.multiselect("Filter by Spouse", df["spouse"].dropna().unique()) if 'spouse' in df.columns else []
 
 filtered_df = df.copy()
 if selected_race: filtered_df = filtered_df[filtered_df["race"].isin(selected_race)]
 if selected_gender: filtered_df = filtered_df[filtered_df["gender"].isin(selected_gender)]
 if selected_realm: filtered_df = filtered_df[filtered_df["realm"].isin(selected_realm)]
-if selected_spouse: filtered_df = filtered_df[filtered_df["spouse"].isin(selected_spouse)]
 
 def plot_bar_chart(column_name, title):
     counts = filtered_df[column_name].value_counts().sort_values(ascending=True)
